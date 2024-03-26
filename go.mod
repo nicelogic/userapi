@@ -1,6 +1,6 @@
 module github.com/nicelogic/userapi
 
-go 1.21.0
+go 1.22.1
 
 require github.com/machinebox/graphql v0.2.2
 
