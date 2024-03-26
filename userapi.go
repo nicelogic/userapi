@@ -13,7 +13,7 @@ type UserApiClient struct {
 
 func (client *UserApiClient) Init(endpoint string) error {
 	if endpoint == "" {
-		return fmt.Errorf("user api client endpoint is empty")
+		return fmt.Errorf("endpoint can't empty")
 	}
 	client.client = graphql.NewClient(endpoint)
 	return nil
