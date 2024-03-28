@@ -20,6 +20,10 @@ func (client *UserApiClient) Init(endpoint string) error {
 }
 
 func (client *UserApiClient) GetUsersInfo(token string, ctx context.Context, ids []string) (map[string]string, error) {
+	if len(ids) == 0 {
+		emptyMap := map[string]string{}
+		return emptyMap, nil
+	}
 
 	req := graphql.NewRequest(`
 	query getUsers($ids: [ID!]!){
