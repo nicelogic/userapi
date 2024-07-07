@@ -24,3 +24,23 @@ func TestUserFromJwt(t *testing.T) {
 	// 	t.Errorf("userFromJwt want test, but: %s", user.Id)
 	// }
 }
+
+
+func TestGetUserName(t *testing.T) {
+	api := &UserApiClient{}
+	err := api.Init("http://127.0.0.1:5556/query")
+	if err != nil {
+		t.Error(err)
+	}
+	ctx := context.Background()
+	name, err := api.GetUserName("eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3MjgxMTY4OTUsInVzZXIiOiJ7XCJpZFwiOlwiODQ2MjI3OTM3XCIsXCJyb2xlc1wiOltcIm5vcm1hbFwiXX0ifQ.STEWtvoms7y4qmNf4AFRgyrjpK_Nyc3CMzkEFZ3zQkllXPgt6U2tL3fQCdoaWxAvXpidBctTKi46rNr_eIhQF_kR35Pn8moQldnh1w8rJpDogmX2EB0RdNLFWwHnqHlmfweYyE2Ir7CcXy5tZuyqC09u2dve2j5_FNPYxnvOkkhyMMGpKqdO49PECeWtWq9qbwEXa8EpTJcO825kQ10VqmHyUMMCrytW3Ifq4Q6GkokGxIjcXiHo0KJiAMqh-_Xrt3JrZoki5OOATZNfuLO_pUflSGOdACcGEJx8cZFqbHnq0SZkYkMJULdZuYRin1vHKtDzdBL1SPTwWcpoDTzjEQ",
+		ctx,
+		"846227937")
+	if err != nil {
+		t.Error(err)
+	}
+	log.Printf("%#v\n", name)
+	// if user.Id != "pdKBcAc7lKzSC9nyglCwQ"{
+	// 	t.Errorf("userFromJwt want test, but: %s", user.Id)
+	// }
+}

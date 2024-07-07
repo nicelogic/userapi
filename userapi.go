@@ -61,3 +61,23 @@ func (client *UserApiClient) GetUsersInfo(token string, ctx context.Context, ids
 	}
 	return usersInfo, nil
 }
+
+func (client *UserApiClient) GetUserName(token string, ctx context.Context, id string) (string, error) {
+
+	req := graphql.NewRequest(`
+	query getUserName($id: ID!) {
+  		getUserName(id: $id) 
+	}
+	`)
+	req.Var("id", id)
+	req.Header.Set("authorization", "Bearer "+token)
+	var response map[string]any
+	if err := client.client.Run(ctx, req, &response); err != nil {
+		return "", err
+	}
+	name, ok := response["getUserName"].(string)
+	if !ok {
+		return "", fmt.Errorf("response[getUserName] parse error")
+	}
+	return name, nil
+}
